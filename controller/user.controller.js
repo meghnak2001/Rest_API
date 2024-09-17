@@ -1,7 +1,7 @@
 const mariDbPool = require("../config/db")
 exports.getAllController=async(req,res)=>{
     try {
-        const data=await mariDbPool.query("SELECT * FROM rest");
+        const data=await mariDbPool.query("select * FROM rest");
         if(!data){
             res.status(404).send({
                 status:false,
@@ -65,7 +65,7 @@ exports.insertController=async(req,res)=>{
         if(!firstname || !lastname || !age || !address){
             res.status(400).send({
                 status:false,
-                msg:"All Field Required",
+                msg:"All Field Required"
             })
         }
         const data=await mariDbPool.query("INSERT INTO rest(firstname,lastname,address,age) VALUES (?,?,?,?)",[firstname,lastname,address,age])
@@ -79,7 +79,6 @@ exports.insertController=async(req,res)=>{
             status:true,
             msg:"Record Insert",
         })
-        await mariDbPool.query("I")
     } catch (error) {
         console.log(error)
         res.status(500).send({
